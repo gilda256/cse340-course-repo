@@ -1,11 +1,24 @@
 <%- include('partials/header') %>
-    <main>
-         <h1><%= title %></h1>
-        <h2>Upcoming Service Projects</h2>
-        <ul>
-           <li>Park Cleanup - Join us to clean up local parks and make them beautiful!</li>
-           <li>Food Drive - Help collect and distribute food to those in need.</li>
-           <li>Community Tutoring - Volunteer to tutor students in various subjects.</li>
-        </ul>
-    </main>
+<main>
+  <h1><%= title %></h1>
+
+  <h2>Upcoming Service Projects</h2>
+  <p>Here are some service projects and their sponsoring organizations:</p>
+
+  <ul>
+    <% projects.forEach(project => { %>
+      <li>
+        <%
+          const date = new Date(project.project_date);
+          const formatted = date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+        %>
+        <%= formatted %>: <%= project.title %> (<%= project.organization_name %>)
+      </li>
+    <% }); %>
+  </ul>
+</main>
 <%- include('partials/footer') %>
