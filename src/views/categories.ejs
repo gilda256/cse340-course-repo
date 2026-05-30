@@ -1,17 +1,18 @@
 <%- include('partials/header') %>
-  <main>
-    <h1>
-      <%= title %>
-    </h1>
+<main>
+  <h1><%= title %></h1>
 
-    <p>Here are the service project categories:</p>
+  <p>Here are the service project categories:</p>
+  <ul>
+    <% categories.forEach(category => { %>
+      <li>
+        <a href="/category/<%= category.category_id %>"><%= category.name %></a>
+        | 
+        <a href="/edit-category/<%= category.category_id %>">Edit</a>
+      </li>
+    <% }); %>
+  </ul>
 
-    <ul>
-      <% categories.forEach(category=> { %>
-        <li>
-          <%= category.name %>
-        </li>
-        <% }); %>
-    </ul>
-  </main>
-  <%- include('partials/footer') %>
+  <p><a href="/new-category">Add New Category</a></p>
+</main>
+<%- include('partials/footer') %>
