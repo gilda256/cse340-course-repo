@@ -33,8 +33,26 @@
       </ul>
     </section>
   <% } %>
-       <a href="/assign-categories/<%= project.project_id %>">Edit Categories</a> 
-       <a href="/edit-project/<%= project.project_id %>">Edit Project</a>
+
+  <a href="/assign-categories/<%= project.project_id %>">Edit Categories</a> 
+  <a href="/edit-project/<%= project.project_id %>">Edit Project</a>
+
+  <% if (user) { %>
+  <section class="volunteer-section">
+    <% if (!isVolunteering) { %>
+      <a href="/project/<%= project.project_id %>/volunteer">
+        Volunteer for this project
+      </a>
+    <% } else { %>
+      <p class="text-success">
+        You are volunteering for this project.
+      </p>
+      <a href="/project/<%= project.project_id %>/unvolunteer">
+        Remove me as a volunteer
+      </a>
+    <% } %>
+  </section>
+<% } %>
 </main>
 
 <%- include('partials/footer') %>
